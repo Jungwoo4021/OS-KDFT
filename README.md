@@ -29,7 +29,9 @@ We used VoxCeleb1 and VoxCeleb2 datasets to evaluate our proposed method. Also, 
 
 Run main.py in scripts.
 
->>> python main.py
+```python
+> python main.py
+```
 
 ### Set system arguments
 
@@ -94,7 +96,7 @@ logger = LogModuleController.Builder(args['name'], args['project'],
         ).save_source_files(args['path_scripts']
         ).use_local(args['path_log']
         #).use_wandb(args['wandb_user'], args['wandb_token'] <- here
-		#).use_neptune(args['neptune_user'], args['neptune_token'] <- here
+        #).use_neptune(args['neptune_user'], args['neptune_token'] <- here
         ).build()
 ```
 
