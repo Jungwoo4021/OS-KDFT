@@ -22,17 +22,18 @@ The application of speech self-supervised learning (SSL) models has achieved rem
   
 
 # Datasets
-We used VoxCeleb1 and VoxCeleb2 datasets to evaluate our proposed method. Also, we employed MUSAN and RIR reverberation datasets for data augmentation. 
 
-> If you want to make new 10-fold information, just run `/GTZAN/k_fold.py` in GTZAN dataset or `Melon/k_fold.py` in Melon Playlist dataset.
+We used VoxCeleb1 and VoxCeleb2 datasets to evaluate our proposed method. Also, we employed MUSAN and RIR reverberation datasets for data augmentation. 
 
 # Run experiment
 
-Go into experiment folder what you want to run.
+Run main.py in scripts.
+
+>>> python main.py
 
 ### Set system arguments
 
-First, you need to set system arguments. You can set arguments in `#00.Experiements/arguments.py`. Here is list of system arguments to set.
+First, you need to set system arguments. You can set arguments in `arguments.py`. Here is list of system arguments to set.
 
 ```python
 1. 'path_log'	  : {YOUR_PATH}
@@ -43,18 +44,25 @@ First, you need to set system arguments. You can set arguments in `#00.Experieme
 	'~/#00.Experiment_name/log_path' (X)
 	'~/result/log_path'(O)
 
-2. 'path_gtzan'  : {YOUR_PATH}
-	'path_gtzan' is path where GTZAN dataset is saved.
+2. 'path_train'  : {YOUR_PATH}
+	'path_train' is path where VoxCeleb2 train partition is stored.
 	input type is str
 
-	# ex) '/data/GTZAN'
+3. 'path_test'  : {YOUR_PATH}
+	'path_test' is path where VoxCeleb2 test partition is stored.
+	input type is str
 
-3. 'kfold_ver'   : {K-FOLD_VER}
-	'kfold_ver' is k number of k-Fold.
-	You can use [1,2,3,4,5,6,7,8,9,10] numbers.
-	input type is int
+4. 'path_trials'  : {YOUR_PATH}
+	'path_trials' is path where Vox1-O, Vox1-E, Vox1-H trials is stored.
+	input type is str
 
-	# ex) 1
+5. 'path_musan'  : {YOUR_PATH}
+	'path_musan' is path where MUSAN dataset is stored.
+	input type is str
+
+6. 'path_rir'  : {YOUR_PATH}
+	'path_rir' is path where RIR reverberation dataset is stored.
+	input type is str
 ```
 
 ### Additional logger
@@ -68,8 +76,11 @@ We have a basic logger that stores information in local. However, if you would l
 # Neptune: Add 'neptune_user' and 'neptune_token'
 # input this arguments in "system_args" dictionary:
 # for example
-'wandb_user'   : 'Hyun-seo',
+'wandb_user'   : 'user-name',
 'wandb_token'  : 'WANDB_TOKEN',
+
+'neptune_user'  : 'user-name',
+'neptune_token' : 'NEPTUNE_TOKEN'
 ```
 
 2. In `main.py`
@@ -82,20 +93,10 @@ logger = LogModuleController.Builder(args['name'], args['project'],
         ).description(args['description']
         ).save_source_files(args['path_scripts']
         ).use_local(args['path_log']
-        ).use_wandb(args['wandb_user'], args['wandb_token']
+        #).use_wandb(args['wandb_user'], args['wandb_token'] <- here
+		#).use_neptune(args['neptune_user'], args['neptune_token'] <- here
         ).build()
 ```
-
-### Run experiment code
-
-```python
-# And just run main.py
-python main.py
-```
-
-We adopt 10-fold cross-validation to get system performance (accuracy). So you need to change `kfold_ver` and re-run experiment code.
-
-
 
 # Citation
 
@@ -105,6 +106,3 @@ Please cite this paper if you make use of the code.
 @article{
 }
 ```
-
-# Reference
-We implemented the BBNN system with reference to [here]( https://arxiv.org/pdf/1901.08928.pdf ). The original BBNN code can be found [here]( https://github.com/CaifengLiu/music-genre-classification ).
