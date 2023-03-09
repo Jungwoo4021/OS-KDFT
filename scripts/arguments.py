@@ -3,35 +3,35 @@ import itertools
 
 def get_args():
     """
-	Returns
-		system_args (dict): path, log setting
-		experiment_args (dict): hyper-parameters
-		args (dict): system_args + experiment_args
+    Returns
+        system_args (dict): path, log setting
+        experiment_args (dict): hyper-parameters
+        args (dict): system_args + experiment_args
     """
     system_args = {
-		# expeirment info
-		'project'       : 'OS_KDFT',
-		'name'          : 'OS_KDFT',
-		'tags'          : ['proposed'],
-		'description'   : '',
+        # expeirment info
+        'project'       : 'OS_KDFT',
+        'name'          : 'OS_KDFT',
+        'tags'          : ['proposed'],
+        'description'   : '',
 
-		# log
-		'path_log'      : '/results',
-		'neptune_user'  : 'yeongsoo',
-		'neptune_token' : 'eyJhcGlfYWRkcmVzcyI6Imh0dHBzOi8vYXBwLm5lcHR1bmUuYWkiLCJhcGlfdXJsIjoiaHR0cHM6Ly9hcHAubmVwdHVuZS5haSIsImFwaV9rZXkiOiIzNmQyNDk2NS0wYWFiLTQxZDEtYjFmOC0xNDIxM2U1YTlmOGQifQ==',
-		'wandb_group'   : '',
-		'wandb_entity'  : '',
+        # log
+        'path_log'      : '/results',
+        'neptune_user'  : 'yeongsoo',
+        'neptune_token' : 'eyJhcGlfYWRkcmVzcyI6Imh0dHBzOi8vYXBwLm5lcHR1bmUuYWkiLCJhcGlfdXJsIjoiaHR0cHM6Ly9hcHAubmVwdHVuZS5haSIsImFwaV9rZXkiOiIzNmQyNDk2NS0wYWFiLTQxZDEtYjFmOC0xNDIxM2U1YTlmOGQifQ==',
+        'wandb_group'   : '',
+        'wandb_entity'  : '',
 
         # dataset
         'path_train'    : {YOUR_PATH},
         'path_test'     : {YOUR_PATH},
-		'path_trials'  	: {YOUR_PATH},
-		'path_musan'  	: {YOUR_PATH},
+        'path_trials'  	: {YOUR_PATH},
+        'path_musan'  	: {YOUR_PATH},
         'path_rir'      : {YOUR_PATH},
 
         # others
         'num_workers': 4,
-		'usable_gpu': None,
+        'usable_gpu': None,
     }
 
     experiment_args = {
@@ -41,13 +41,13 @@ def get_args():
         # experiment
         'epoch'             : 100,
         'batch_size'        : 128,
-		'rand_seed'		    : 1,
+        'rand_seed'		    : 1,
         
         # model
         'C'                 : 512,
         'num_hidden_layers' : 4,
         'n_class'           : 5994, 
-		'embedding_size'	: 192,
+        'embedding_size'	: 192,
         'aam_margin'        : 0.2,
         'aam_scale'         : 30,
         'spec_mask_F'       : 100,
@@ -62,7 +62,7 @@ def get_args():
         # learning rate
         'lr'            : 1e-4,
         'lr_min'        : 1e-6,
-		'weight_decay'  : 0,
+        'weight_decay'  : 0,
         'T_0'           : 100,
         'T_mult'        : 1,
     }

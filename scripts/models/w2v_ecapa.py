@@ -112,55 +112,55 @@ class SEModule(nn.Module):
             nn.ReLU(),
             nn.Conv1d(bottleneck, channels, kernel_size=1, padding=0),
             nn.Sigmoid(),
-		)
+        )
 
     def forward(self, input):
         x = self.se(input)
         return input * x
 
 class Bottle2neck(nn.Module):
-	def __init__(self, inplanes, planes, kernel_size, dilation, scale):
-		super(Bottle2neck, self).__init__()
+    def __init__(self, inplanes, planes, kernel_size, dilation, scale):
+        super(Bottle2neck, self).__init__()
 
-		width = int(math.floor(planes / scale))
-		self.conv1 = nn.Conv1d(inplanes, width * scale, kernel_size=1)
-		self.bn1 = nn.BatchNorm1d(width * scale)
-		self.nums = scale - 1
+        width = int(math.floor(planes / scale))
+        self.conv1 = nn.Conv1d(inplanes, width * scale, kernel_size=1)
+        self.bn1 = nn.BatchNorm1d(width * scale)
+        self.nums = scale - 1
 
-		bns = []
-		convs = []
-		num_pad = math.floor(kernel_size / 2) * dilation
-		for _ in range(self.nums):
-			convs.append(nn.Conv1d(width, width, kernel_size=kernel_size, dilation=dilation, padding=num_pad))
-			bns.append(nn.BatchNorm1d(width))
-		self.convs = nn.ModuleList(convs)
-		self.bns = nn.ModuleList(bns)
-		
-		self.conv3 = nn.Conv1d(width * scale, planes, kernel_size=1)
-		self.bn3 = nn.BatchNorm1d(planes)
-		self.relu = nn.ReLU()
-		self.width = width
-		self.se = SEModule(planes)
+        bns = []
+        convs = []
+        num_pad = math.floor(kernel_size / 2) * dilation
+        for _ in range(self.nums):
+            convs.append(nn.Conv1d(width, width, kernel_size=kernel_size, dilation=dilation, padding=num_pad))
+            bns.append(nn.BatchNorm1d(width))
+        self.convs = nn.ModuleList(convs)
+        self.bns = nn.ModuleList(bns)
+        
+        self.conv3 = nn.Conv1d(width * scale, planes, kernel_size=1)
+        self.bn3 = nn.BatchNorm1d(planes)
+        self.relu = nn.ReLU()
+        self.width = width
+        self.se = SEModule(planes)
 
-	def forward(self, x):
-		identity = x
-		x = self.conv1(x)
-		x = self.relu(x)
-		x = self.bn1(x)
+    def forward(self, x):
+        identity = x
+        x = self.conv1(x)
+        x = self.relu(x)
+        x = self.bn1(x)
 
-		x_split = torch.split(x, self.width, 1)
-		for i in range(self.nums):
-			sp = x_split[i] if i == 0 else sp + x_split[i]
-			sp = self.convs[i](sp)
-			sp = self.relu(sp)
-			sp = self.bns[i](sp)
-			x = sp if i == 0 else torch.cat((x, sp), 1)
-		x = torch.cat((x, x_split[self.nums]), 1)
+        x_split = torch.split(x, self.width, 1)
+        for i in range(self.nums):
+            sp = x_split[i] if i == 0 else sp + x_split[i]
+            sp = self.convs[i](sp)
+            sp = self.relu(sp)
+            sp = self.bns[i](sp)
+            x = sp if i == 0 else torch.cat((x, sp), 1)
+        x = torch.cat((x, x_split[self.nums]), 1)
 
-		x = self.conv3(x)
-		x = self.relu(x)
-		x = self.bn3(x)
-		
-		x = self.se(x)
-		x += identity
-		return x 
+        x = self.conv3(x)
+        x = self.relu(x)
+        x = self.bn3(x)
+        
+        x = self.se(x)
+        x += identity
+        return x 
