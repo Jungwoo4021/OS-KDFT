@@ -105,6 +105,12 @@ logger = LogModuleController.Builder(args['name'], args['project'],
 Please cite this paper if you make use of the code. 
 
 ```
-@article{
+@inproceedings{heo23_interspeech,
+  author={Jungwoo Heo and Chan-yeong Lim and Ju-ho Kim and Hyun-seo Shin and Ha-Jin Yu},
+  title={{One-Step Knowledge Distillation and Fine-Tuning in Using Large Pre-Trained Self-Supervised Learning Models for Speaker Verification}},
+  year=2023,
+  booktitle={Proc. INTERSPEECH 2023},
+  pages={5271--5275},
+  doi={10.21437/Interspeech.2023-605}
 }
 ```
