@@ -17,8 +17,8 @@ def get_args():
 
         # log
         'path_log'      : '/results',
-        'neptune_user'  : 'yeongsoo',
-        'neptune_token' : 'eyJhcGlfYWRkcmVzcyI6Imh0dHBzOi8vYXBwLm5lcHR1bmUuYWkiLCJhcGlfdXJsIjoiaHR0cHM6Ly9hcHAubmVwdHVuZS5haSIsImFwaV9rZXkiOiIzNmQyNDk2NS0wYWFiLTQxZDEtYjFmOC0xNDIxM2U1YTlmOGQifQ==',
+        'neptune_user'  : '',
+        'neptune_token' : '',
         'wandb_group'   : '',
         'wandb_entity'  : '',
 
