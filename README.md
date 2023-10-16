@@ -7,20 +7,22 @@
 </h4>
 
 <h1 align="center">
-    <p><b>OS-KDFT</b></p>
+    <b>OS-KDFT</b>
 </h1>
 
 <h2 align="center">
-    <p><b>Knowledge distillation</b> and <b>target task joint training</b> <br>for audio PLM compression and fine-tuning</p>
+    <b>Knowledge distillation</b> and <b>target task joint training</b> <br>for audio PLM compression and fine-tuning
 </h2>
 
 <h3 align="left">
+	<p>
 	<a href="https://www.isca-speech.org/archive/interspeech_2023/heo23_interspeech.html"><img src="https://img.shields.io/badge/DOI-10.21437/Interspeech.2023--605-blue" alt="Doi"></a>
 	<br>
 	<img src="https://img.shields.io/badge/python-3776AB?style=for-the-badge&logo=Python&logoColor=white"></a>
 	<a href="https://docs.nvidia.com/deeplearning/frameworks/pytorch-release-notes/rel-23-08.html#rel-23-08"><img src="https://img.shields.io/badge/23.08-2496ED?style=for-the-badge&logo=Docker&logoColor=white"></a>
 	<img src="https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=PyTorch&logoColor=white"></a>
 	<a href="https://huggingface.co/"><img src="https://github.com/Jungwoo4021/OS-KDFT/blob/main/readme/icon_hugging_face.png?raw=true"></a>
+	</p>
 </h3>
 
 # Introduction
