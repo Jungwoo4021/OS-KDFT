@@ -2,11 +2,11 @@
 <h4 align="right">
     <p>
         | <b>English</b> |
-        <a href="https://github.com/Jungwoo4021/OS-KDFT/readme/README_ko.md">한국어</a> |
+        <a href="https://github.com/Jungwoo4021/OS-KDFT/blob/main/readme/README_ko.md">한국어</a> |
     </p>
 </h4>
 
-<div style="text-align: center; font-size: 2.5em;"> <b>OS-KDFT</div>
+<div style="text-align: center; font-size: 2.5em;">OS-KDFT</div>
 <h2 align="center">
     <p><b>Knowledge distillation</b> and <b>target task joint training</b> <br>for audio PLM compression and fine-tuning</p>
 </h2>
@@ -17,7 +17,7 @@
 	<img src="https://img.shields.io/badge/python-3776AB?style=for-the-badge&logo=Python&logoColor=white"></a>
 	<a href="https://docs.nvidia.com/deeplearning/frameworks/pytorch-release-notes/rel-23-08.html#rel-23-08"><img src="https://img.shields.io/badge/23.08-2496ED?style=for-the-badge&logo=Docker&logoColor=white"></a>
 	<img src="https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=PyTorch&logoColor=white"></a>
-	<a href="https://huggingface.co/"><img src="https://github.com/Jungwoo4021/OS-KDFT/readme/icon_hugging_face.png"></a>
+	<a href="https://huggingface.co/"><img src="https://github.com/Jungwoo4021/OS-KDFT/blob/main/readme/icon_hugging_face.png?raw=true"></a>
 </h3>
 
 # Introduction
