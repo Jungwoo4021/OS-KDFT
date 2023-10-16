@@ -6,7 +6,10 @@
     </p>
 </h4>
 
-<div style="text-align: center; font-size: 2.5em;">OS-KDFT</div>
+<h1 align="center">
+    <p><b>OS-KDFT</b></p>
+</h1>
+
 <h2 align="center">
     <p><b>Knowledge distillation</b> and <b>target task joint training</b> <br>for audio PLM compression and fine-tuning</p>
 </h2>
