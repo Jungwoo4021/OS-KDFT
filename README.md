@@ -25,75 +25,85 @@
 	</p>
 </h3>
 
-# Introduction
-Pytorch code for following paper:
+# Update log
+(In progress) 
+* (~2024.02) Develop an improved version of OS-KDFT
+* (~2024.02) Check on other tasks (speech recognition, keyword spotting, etc.)
+
+(Done)
+* (2024.01.15) Upload evaluation scripts
+
+
+# About OS-KDFT
+### Summary
+This repository offers source code for following paper:
 
 * **Title** : One-Step Knowledge Distillation and Fine-Tuning in Using Large Pre-Trained Self-Supervised Learning Models for Speaker Verification (Accepted at Interspeech2023)
 * **Autor** :  Jungwoo Heo, Chan-yeong Lim, Ju-ho Kim, Hyun-seo Shin, Ha-Jin Yu
 
-# Abstract
-The application of speech self-supervised learning (SSL) models has achieved remarkable performance in speaker verification (SV). However, there is a computational cost hurdle in employing them, which makes development and deployment difficult. Several studies have simply compressed SSL models through knowledge distillation (KD) without considering the target task. Consequently, these methods could not extract SV-tailored features. This paper suggests One-Step Knowledge Distillation and Fine-Tuning (OS-KDFT), which incorporates KD and fine-tuning (FT). We optimize a student model for SV during KD training to avert the distillation of inappropriate information for the SV. OS-KDFT could downsize Wav2Vec 2.0 based ECAPA-TDNN size by approximately 76.2%, and reduce the SSL model's inference time by 79% while presenting an EER of 0.98%. The proposed OS-KDFT is validated across VoxCeleb1 and VoxCeleb2 datasets and W2V2 and HuBERT SSL models. Experiments are available on our GitHub. 
+### Paper abstract
+The application of speech self-supervised learning (SSL) models has achieved remarkable performance in speaker verification (SV). However, there is a computational cost hurdle in employing them, which makes development and deployment difficult. Several studies have simply compressed SSL models through knowledge distillation (KD) without considering the target task. Consequently, these methods could not extract SV-tailored features. This paper suggests One-Step Knowledge Distillation and Fine-Tuning (OS-KDFT), which incorporates KD and fine-tuning (FT). We optimize a student model for SV during KD training to avert the distillation of inappropriate information for the SV. OS-KDFT could downsize Wav2Vec 2.0 based ECAPA-TDNN size by approximately 76.2%, and reduce the SSL model's inference time by 79% while presenting an EER of 0.98%. The proposed OS-KDFT is validated across VoxCeleb1 and VoxCeleb2 datasets and W2V2 and HuBERT SSL models. 
 
-# Prerequisites
+# What can I do in this repository?
+You can get the experimental code via hyperlinks. 
+<br> Note that our model weight and experiment log (such as loss, validation results) is stored in 'params' folder in 'only evaluation'. 
 
-## Environment Setting
-* We used 'nvcr.io/nvidia/pytorch:22.01-py3' image of Nvidia GPU Cloud for conducting our experiments. 
+1. HuBERT compression in speaker verification, EER 4.75% in VoxCeleb1 (<a href="https://github.com/Jungwoo4021/OS-KDFT/blob/main/readme/README_ko.md">train & evaluation</a>, <a href="https://github.com/Jungwoo4021/OS-KDFT/blob/main/readme/README_ko.md">only evaluation</a>)
+2. WavLM compression in speaker verification, EER 4.25% in VoxCeleb1 (<a href="https://github.com/Jungwoo4021/OS-KDFT/blob/main/readme/README_ko.md">train & evaluation</a>, <a href="https://github.com/Jungwoo4021/OS-KDFT/blob/main/readme/README_ko.md">only evaluation</a>)
 
-* Python 3.8.12
+# How to use?
+## 1. Set environment
 
-* Pytorch 1.11.0+cu115
+### 1-1. Open NVIDIA-docker
 
-* Torchaudio 0.11.0+cu115
-
-  
-
-# Datasets
-
-We used VoxCeleb1 and VoxCeleb2 datasets to evaluate our proposed method. Also, we employed MUSAN and RIR reverberation datasets for data augmentation. 
-
-# Run experiment
-
-Run main.py in scripts.
-
-```python
-> python main.py
+<a href="https://github.com/Jungwoo4021/KT2023/blob/main/summary/docker_files/Dockerfile23_08_3"><img src="https://img.shields.io/badge/DOCKER FILE-2496ED?style=for-the-badge&logo=Docker&logoColor=white"></a>
 ```
+Docker file summary
 
-### Set system arguments
+Docker
+    nvcr.io/nvidia/pytorch:23.08-py3 
 
-First, you need to set system arguments. You can set arguments in `arguments.py`. Here is list of system arguments to set.
+Python
+    3.8.12
+
+Pytorch 
+    2.1.0a0+29c30b1
+
+Torchaudio 
+    2.0.1
+```
+(We conducted experiment using 2 or 4 NVIDIA RTX A5000 GPUs)
+
+### 1-2. Prepare datasets
+
+Depending on the task you want to perform, you'll need the following datasets.
+
+* Speaker verification: (VoxCeleb1) or (VoxCeleb2, MUSAN, RIR reverberation)
+* Keyword spotting: To be updated
+
+
+## 2. Run expriment
+### 2-1. Download script
+
+You can get the experimental code via the hyperlinks in the "What can I do in this repository?" section.
+
+### 2-2. Set system arguments
+
+Set experimental arguments in `arguments.py` file. Here is list of system arguments to set.
 
 ```python
-1. 'path_log'	  : {YOUR_PATH}
+1. 'usable_gpu': {YOUR_PATH} # ex) '0,1,2,3'
 	'path_log' is path of saving experiments.
 	input type is str
 
-	CAUTION! Don't set your path_log inside the experiment code path.
-	'~/#00.Experiment_name/log_path' (X)
-	'~/result/log_path'(O)
-
-2. 'path_train'  : {YOUR_PATH}
-	'path_train' is path where VoxCeleb2 train partition is stored.
-	input type is str
-
-3. 'path_test'  : {YOUR_PATH}
-	'path_test' is path where VoxCeleb2 test partition is stored.
-	input type is str
-
-4. 'path_trials'  : {YOUR_PATH}
-	'path_trials' is path where Vox1-O, Vox1-E, Vox1-H trials is stored.
-	input type is str
-
-5. 'path_musan'  : {YOUR_PATH}
-	'path_musan' is path where MUSAN dataset is stored.
-	input type is str
-
-6. 'path_rir'  : {YOUR_PATH}
-	'path_rir' is path where RIR reverberation dataset is stored.
+2. 'path_...': {YOUR_PATH}
+	'path_...' is path where ... dataset is stored.
 	input type is str
 ```
 
-### Additional logger
+&nbsp;
+
+### About logger
 
 We have a basic logger that stores information in local. However, if you would like to use an additional online logger (wandb or neptune):
 
@@ -114,7 +124,7 @@ We have a basic logger that stores information in local. However, if you would l
 2. In `main.py`
 
 ```python
-# Just remove "#" in logger
+# Just remove "#" in logger which you use
 
 logger = LogModuleController.Builder(args['name'], args['project'],
         ).tags(args['tags']
@@ -125,6 +135,14 @@ logger = LogModuleController.Builder(args['name'], args['project'],
         #).use_neptune(args['neptune_user'], args['neptune_token'] <- here
         ).build()
 ```
+### 2-3. Run!
+
+Just run main.py in scripts!
+
+```python
+> python main.py
+```
+
 
 # Citation
 

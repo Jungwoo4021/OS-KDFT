@@ -1,0 +1,3 @@
+from .hubert_student import StudentHubert_DistHubt, StudentHubert_FitHubt
+from .wavlm_student import StudentWavLMPlus_DistHubt, StudentWavLMPlus_FitHubt
+from .data2vec_student import StudentData2Vec_DistHubt, StudentHubert_FitHubt

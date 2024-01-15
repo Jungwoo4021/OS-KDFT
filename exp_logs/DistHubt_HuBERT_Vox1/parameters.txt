@@ -1,0 +1,20 @@
+huggingface_url: facebook/hubert-base-ls960
+epoch: 100
+batch_size: 50
+rand_seed: 1
+student_hidden_layer_size: 768
+student_hidden_layer_num: 2
+init_teacher_idx: [0, 1]
+embed_size: 192
+adapter_size: 64
+weighted_sum: True
+use_TFT: False
+cos_lambda: 1
+target_layer_idx: [4, 8, 12]
+crop_size: 48000
+seg_size: 48000
+num_seg: 5
+lr: 5e-05
+lr_min: 5e-05
+weight_decay: 0.0001
+T_mult: 1
