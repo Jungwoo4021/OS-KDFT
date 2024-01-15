@@ -41,22 +41,24 @@ This repository offers source code for following paper:
 * **Title** : One-Step Knowledge Distillation and Fine-Tuning in Using Large Pre-Trained Self-Supervised Learning Models for Speaker Verification (Accepted at Interspeech2023)
 * **Autor** :  Jungwoo Heo, Chan-yeong Lim, Ju-ho Kim, Hyun-seo Shin, Ha-Jin Yu
 
+We provide experiment scripts, trained model, and training logs. 
+
 ### Paper abstract
 The application of speech self-supervised learning (SSL) models has achieved remarkable performance in speaker verification (SV). However, there is a computational cost hurdle in employing them, which makes development and deployment difficult. Several studies have simply compressed SSL models through knowledge distillation (KD) without considering the target task. Consequently, these methods could not extract SV-tailored features. This paper suggests One-Step Knowledge Distillation and Fine-Tuning (OS-KDFT), which incorporates KD and fine-tuning (FT). We optimize a student model for SV during KD training to avert the distillation of inappropriate information for the SV. OS-KDFT could downsize Wav2Vec 2.0 based ECAPA-TDNN size by approximately 76.2%, and reduce the SSL model's inference time by 79% while presenting an EER of 0.98%. The proposed OS-KDFT is validated across VoxCeleb1 and VoxCeleb2 datasets and W2V2 and HuBERT SSL models. 
 
 # What can I do in this repository?
 You can get the experimental code via hyperlinks. 
-<br> Note that our model weight and experiment log (such as loss, validation results) is stored in 'params' folder in 'only evaluation'. 
+<br> Note that we provide our **trained model weights** and **training logs** (such as loss, validation results) for re-implementation. You can find these in 'params' folder stored in each 'only evaluation' folder.  
 
-1. HuBERT compression in speaker verification, EER 4.75% in VoxCeleb1 (<a href="https://github.com/Jungwoo4021/OS-KDFT/blob/main/readme/README_ko.md">train & evaluation</a>, <a href="https://github.com/Jungwoo4021/OS-KDFT/blob/main/readme/README_ko.md">only evaluation</a>)
-2. WavLM compression in speaker verification, EER 4.25% in VoxCeleb1 (<a href="https://github.com/Jungwoo4021/OS-KDFT/blob/main/readme/README_ko.md">train & evaluation</a>, <a href="https://github.com/Jungwoo4021/OS-KDFT/blob/main/readme/README_ko.md">only evaluation</a>)
+1. HuBERT compression in speaker verification, EER 4.75% in VoxCeleb1 (<a href="https://github.com/Jungwoo4021/OS-KDFT/tree/main/scripts/HuBERT_DistilHuBERT_SV_Vox1/train">train & evaluation</a>, <a href="https://github.com/Jungwoo4021/OS-KDFT/tree/main/scripts/HuBERT_DistilHuBERT_SV_Vox1/only_eval">only evaluation</a>)
+2. WavLM compression in speaker verification, EER 4.25% in VoxCeleb1 (<a href="https://github.com/Jungwoo4021/OS-KDFT/tree/main/scripts/WavLM_DistHuBERT_SV_Vox1/train">train & evaluation</a>, <a href="https://github.com/Jungwoo4021/OS-KDFT/tree/main/scripts/WavLM_DistHuBERT_SV_Vox1/only_eval">only evaluation</a>)
 
 # How to use?
 ## 1. Set environment
 
 ### 1-1. Open NVIDIA-docker
 
-<a href="https://github.com/Jungwoo4021/KT2023/blob/main/summary/docker_files/Dockerfile23_08_3"><img src="https://img.shields.io/badge/DOCKER FILE-2496ED?style=for-the-badge&logo=Docker&logoColor=white"></a>
+<a href="https://github.com/Jungwoo4021/OS-KDFT/Dockerfile"><img src="https://img.shields.io/badge/DOCKER FILE-2496ED?style=for-the-badge&logo=Docker&logoColor=white"></a>
 ```
 Docker file summary
 
